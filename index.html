@@ -1,26 +1,267 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Minimercado Online</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimercado Online - Início</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- CSS customizado -->
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Bem-vindo ao Minimercado Online</h1>
-        <nav>
-            <a href="index.html">Início</a> |
-            <a href="produtos.html">Produtos</a> |
-            <a href="servicos.html">Serviços</a>
-        </nav>
-    </header>
+    <!-- Link de acessibilidade para pular navegação -->
+    <a href="#main-content" class="accessibility-skip">Pular para o conteúdo principal</a>
+    
+    <!-- Navbar responsiva -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation" aria-label="Navegação principal">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="Minimercado Online - Página inicial">
+                <i class="bi bi-shop" aria-hidden="true"></i> Minimercado Online
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html" aria-current="page" aria-label="Página atual: Início">
+                            <i class="bi bi-house" aria-hidden="true"></i> Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.html" aria-label="Ver produtos disponíveis">
+                            <i class="bi bi-basket" aria-hidden="true"></i> Produtos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicos.html" aria-label="Conhecer nossos serviços">
+                            <i class="bi bi-truck" aria-hidden="true"></i> Serviços
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html" aria-label="Fazer cadastro de cliente">
+                            <i class="bi bi-person-plus" aria-hidden="true"></i> Cadastro
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="agendamento.html" aria-label="Agendar entrega ou retirada">
+                            <i class="bi bi-calendar" aria-hidden="true"></i> Agendamento
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <main>
-        <h2>Seu minimercado na palma da mão!</h2>
-        <p>Compre frutas, alimentos não perecíveis e produtos de higiene e limpeza sem sair de casa.</p>
-        <p>Escolha entre retirada no local ou tele-entrega.</p>
+    <!-- Seção Hero com relógio dinâmico -->
+    <section id="home" class="hero-section" role="banner">
+        <div class="container text-center fade-in">
+            <h1 class="display-4 mb-4">Bem-vindo ao Minimercado Online</h1>
+            <p class="lead mb-4">Seu minimercado na palma da mão! Compre com comodidade e receba em casa.</p>
+            
+            <!-- Relógio dinâmico -->
+            <div class="time-display d-inline-block mb-4">
+                <i class="bi bi-clock" aria-hidden="true"></i>
+                <span id="current-time" aria-live="polite" aria-label="Horário atual"></span>
+            </div>
+            
+            <div>
+                <a href="produtos.html" class="btn btn-primary btn-lg me-3" aria-describedby="produtos-desc">
+                    <i class="bi bi-basket" aria-hidden="true"></i> Ver Produtos
+                </a>
+                <a href="cadastro.html" class="btn btn-success btn-lg" aria-describedby="cadastro-desc">
+                    <i class="bi bi-person-plus" aria-hidden="true"></i> Cadastrar-se
+                </a>
+            </div>
+            <div id="produtos-desc" class="visually-hidden">Botão para visualizar todos os produtos disponíveis</div>
+            <div id="cadastro-desc" class="visually-hidden">Botão para realizar cadastro de novo cliente</div>
+        </div>
+    </section>
+
+    <main id="main-content" role="main">
+        <!-- Carrossel de Produtos em Destaque -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">Produtos em Destaque</h2>
+                
+                <div id="productCarousel" class="carousel slide" data-bs-ride="carousel" role="region" aria-label="Carrossel de produtos em destaque">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active" 
+                                aria-current="true" aria-label="Slide 1 - Frutas Frescas"></button>
+                        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1" 
+                                aria-label="Slide 2 - Produtos de Limpeza"></button>
+                        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" 
+                                aria-label="Slide 3 - Alimentos Não Perecíveis"></button>
+                    </div>
+                    
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="p-5">
+                                        <h3>Frutas Frescas</h3>
+                                        <p class="lead">Bananas selecionadas e alface crocante, direto do produtor para sua mesa!</p>
+                                        <a href="produtos.html" class="btn btn-primary" aria-label="Ver todas as frutas disponíveis">Ver Frutas</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center p-4">
+                                        <i class="bi bi-apple text-success" style="font-size: 8rem;" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="p-5">
+                                        <h3>Produtos de Limpeza</h3>
+                                        <p class="lead">Sabão em pó e shampoo de qualidade para manter sua casa sempre limpa!</p>
+                                        <a href="produtos.html" class="btn btn-primary" aria-label="Ver produtos de limpeza">Ver Produtos</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center p-4">
+                                        <i class="bi bi-droplet text-primary" style="font-size: 8rem;" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="p-5">
+                                        <h3>Alimentos Básicos</h3>
+                                        <p class="lead">Arroz e feijão de primeira qualidade para sua família!</p>
+                                        <a href="produtos.html" class="btn btn-primary" aria-label="Ver alimentos básicos">Ver Alimentos</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center p-4">
+                                        <i class="bi bi-bag text-warning" style="font-size: 8rem;" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev" aria-label="Slide anterior">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next" aria-label="Próximo slide">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre o Minimercado -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2>Por que escolher nosso Minimercado?</h2>
+                        <p class="lead">Oferecemos produtos frescos e de qualidade com a comodidade que você precisa.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i> Produtos sempre frescos</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i> Entrega rápida em até 2 horas</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i> Preços competitivos</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i> Atendimento personalizado</li>
+                        </ul>
+                        <a href="cadastro.html" class="btn btn-success btn-lg">Cadastre-se Agora</a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <i class="bi bi-award text-primary" style="font-size: 10rem;" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Depoimentos -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">O que nossos clientes dizem</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 card-hover">
+                            <div class="card-body text-center">
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <p class="mt-3">"Produtos sempre frescos e entrega super rápida!"</p>
+                                <footer class="blockquote-footer">Maria Silva</footer>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 card-hover">
+                            <div class="card-body text-center">
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <p class="mt-3">"Ótimo atendimento e preços justos. Recomendo!"</p>
+                                <footer class="blockquote-footer">João Santos</footer>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 card-hover">
+                            <div class="card-body text-center">
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                                <p class="mt-3">"Facilidade para comprar e receber em casa. Perfeito!"</p>
+                                <footer class="blockquote-footer">Ana Costa</footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Minimercado Online</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-shop" aria-hidden="true"></i> Minimercado Online</h5>
+                    <p>Seu minimercado de confiança, agora também online!</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Contato</h5>
+                    <p><i class="bi bi-telephone" aria-hidden="true"></i> (51) 3333-4444</p>
+                    <p><i class="bi bi-envelope" aria-hidden="true"></i> contato@minimercado.com</p>
+                    <p><i class="bi bi-geo-alt" aria-hidden="true"></i> Porto Alegre, RS</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2025 Minimercado Online. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript customizado -->
+    <script src="scripts.js"></script>
 </body>
 </html>

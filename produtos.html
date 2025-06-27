@@ -1,40 +1,973 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Produtos - Minimercado Online</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimercado Online - Produtos</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- CSS customizado -->
+    <link href="styles.css" rel="stylesheet">
+    
+    <style>
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+        
+        .category-title {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 2rem 0 1rem 0;
+            text-align: center;
+        }
+        
+        .btn-cart {
+            background-color: #28a745;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cart:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        
+        body {
+            padding-top: 76px;
+        }
+        
+        .search-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Produtos</h1>
-        <nav>
-            <a href="index.html">Início</a> |
-            <a href="produtos.html">Produtos</a> |
-            <a href="servicos.html">Serviços</a>
-        </nav>
-    </header>
+    <!-- Link de acessibilidade para pular navegação -->
+    <a href="#main-content" class="accessibility-skip">Pular para o conteúdo principal</a>
+    
+    <!-- Navbar responsiva -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation" aria-label="Navegação principal">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="Minimercado Online - Página inicial">
+                <i class="bi bi-shop" aria-hidden="true"></i> Minimercado Online
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" aria-label="Voltar ao início">
+                            <i class="bi bi-house" aria-hidden="true"></i> Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="produtos.html" aria-current="page" aria-label="Página atual: Produtos">
+                            <i class="bi bi-basket" aria-hidden="true"></i> Produtos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicos.html" aria-label="Conhecer nossos serviços">
+                            <i class="bi bi-truck" aria-hidden="true"></i> Serviços
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html" aria-label="Fazer cadastro de cliente">
+                            <i class="bi bi-person-plus" aria-hidden="true"></i> Cadastro
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="agendamento.html" aria-label="Agendar entrega ou retirada">
+                            <i class="bi bi-calendar" aria-hidden="true"></i> Agendamento
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <main>
-        <h2>Frutas e Verduras</h2>
-        <ul>
-            <li>Banana - R$ 3,00/kg</li>
-            <li>Alface - R$ 2,00/unidade</li>
-        </ul>
+    <!-- Seção de Busca -->
+    <section class="search-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h1 class="text-center mb-4">Nossos Produtos</h1>
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Buscar produtos..." aria-label="Campo de busca de produtos">
+                        <button class="btn btn-primary btn-lg" type="button" aria-label="Buscar produtos">
+                            <i class="bi bi-search" aria-hidden="true"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <h2>Produtos Alimentícios Não Perecíveis</h2>
-        <ul>
-            <li>Arroz 5kg - R$ 20,00</li>
-            <li>Feijão 1kg - R$ 7,00</li>
-        </ul>
+    <main id="main-content" role="main">
+        <div class="container">
+            
+            <!-- Categoria 1: Frutas e Verduras -->
+            <div class="category-title">
+                <h2><i class="bi bi-apple me-2"></i>Frutas e Verduras</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300&h=200&fit=crop" alt="Bananas" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Banana Prata</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 4,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300&h=200&fit=crop" alt="Maçãs" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Maçã Fuji</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 7,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1582979512210-99b6a53386f9?w=300&h=200&fit=crop" alt="Laranja" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Laranja Lima</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 3,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&h=200&fit=crop" alt="Alface" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Alface Crespa</h5>
+                            <p class="card-text">Unidade</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 2,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=300&h=200&fit=crop" alt="Tomate" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Tomate Salada</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 6,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop" alt="Cenoura" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Cenoura</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 4,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=300&h=200&fit=crop" alt="Cebola" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Cebola Branca</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 3,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1504297050568-910d24c426d3?w=300&h=200&fit=crop" alt="Batata" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Batata Inglesa</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 5,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <h2>Produtos de Higiene e Limpeza</h2>
-        <ul>
-            <li>Sabão em pó 1kg - R$ 10,00</li>
-            <li>Shampoo 300ml - R$ 12,00</li>
-        </ul>
+            <!-- Categoria 2: Carnes e Aves -->
+            <div class="category-title">
+                <h2><i class="bi bi-egg-fried me-2"></i>Carnes e Aves</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&h=200&fit=crop" alt="Frango" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Frango Inteiro</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 8,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=300&h=200&fit=crop" alt="Carne Bovina" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Carne Moída</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 24,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=300&h=200&fit=crop" alt="Linguiça" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Linguiça Calabresa</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 18,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=300&h=200&fit=crop" alt="Peito de Frango" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Peito de Frango</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 14,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=300&h=200&fit=crop" alt="Coxinha da Asa" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Coxinha da Asa</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 11,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=300&h=200&fit=crop" alt="Picanha" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Picanha</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 45,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=300&h=200&fit=crop" alt="Bacon" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Bacon Fatiado</h5>
+                            <p class="card-text">200g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 8,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1618588507085-c79565432917?w=300&h=200&fit=crop" alt="Salsicha" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Salsicha</h5>
+                            <p class="card-text">500g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 6,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 3: Laticínios -->
+            <div class="category-title">
+                <h2><i class="bi bi-droplet me-2"></i>Laticínios</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&h=200&fit=crop" alt="Leite" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Leite Integral</h5>
+                            <p class="card-text">1L</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 4,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=300&h=200&fit=crop" alt="Queijo" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Queijo Mussarela</h5>
+                            <p class="card-text">Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 28,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=300&h=200&fit=crop" alt="Iogurte" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Iogurte Natural</h5>
+                            <p class="card-text">170g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 3,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300&h=200&fit=crop" alt="Manteiga" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Manteiga com Sal</h5>
+                            <p class="card-text">200g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 7,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=300&h=200&fit=crop" alt="Ovos" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Ovos Brancos</h5>
+                            <p class="card-text">Dúzia</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 8,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=300&h=200&fit=crop" alt="Cream Cheese" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Cream Cheese</h5>
+                            <p class="card-text">150g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 6,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1523473827533-2a64d0d36748?w=300&h=200&fit=crop" alt="Requeijão" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Requeijão Cremoso</h5>
+                            <p class="card-text">200g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 5,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=200&fit=crop" alt="Leite Condensado" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Leite Condensado</h5>
+                            <p class="card-text">395g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 4,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 4: Grãos e Cereais -->
+            <div class="category-title">
+                <h2><i class="bi bi-bag me-2"></i>Grãos e Cereais</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=200&fit=crop" alt="Arroz" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Arroz Branco</h5>
+                            <p class="card-text">5Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 18,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=200&fit=crop" alt="Feijão" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Feijão Carioca</h5>
+                            <p class="card-text">1Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 7,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1555687216-d8fb3cf7873d?w=300&h=200&fit=crop" alt="Macarrão" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Macarrão Espaguete</h5>
+                            <p class="card-text">500g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 3,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&h=200&fit=crop" alt="Aveia" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Aveia em Flocos</h5>
+                            <p class="card-text">500g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 5,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=300&h=200&fit=crop" alt="Lentilha" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Lentilha</h5>
+                            <p class="card-text">500g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 6,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300&h=200&fit=crop" alt="Quinoa" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Quinoa em Grãos</h5>
+                            <p class="card-text">250g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 12,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=300&h=200&fit=crop" alt="Grão de Bico" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Grão de Bico</h5>
+                            <p class="card-text">500g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 8,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1517837061732-ee4956ae3c0b?w=300&h=200&fit=crop" alt="Farinha de Trigo" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Farinha de Trigo</h5>
+                            <p class="card-text">1Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 4,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 5: Bebidas -->
+            <div class="category-title">
+                <h2><i class="bi bi-cup-straw me-2"></i>Bebidas</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?w=300&h=200&fit=crop" alt="Água" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Água Mineral</h5>
+                            <p class="card-text">1,5L</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 2,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1556881286-12c5d3665dd8?w=300&h=200&fit=crop" alt="Refrigerante" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Refrigerante Cola</h5>
+                            <p class="card-text">2L</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 6,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=300&h=200&fit=crop" alt="Suco de Laranja" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Suco de Laranja</h5>
+                            <p class="card-text">1L</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 8,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1564890830583-c1b3d0a62512?w=300&h=200&fit=crop" alt="Cerveja" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Cerveja Lager</h5>
+                            <p class="card-text">350ml</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 3,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1574448857443-dc1d7e9c4dad?w=300&h=200&fit=crop" alt="Café" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Café Torrado</h5>
+                            <p class="card-text">500g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 12,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop" alt="Chá" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Chá Camomila</h5>
+                            <p class="card-text">15 sachês</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 4,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1587080266227-677cc2555dff?w=300&h=200&fit=crop" alt="Energético" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Energético</h5>
+                            <p class="card-text">250ml</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 5,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1566005622228-1c05e58b6e1f?w=300&h=200&fit=crop" alt="Água de Coco" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Água de Coco</h5>
+                            <p class="card-text">200ml</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 3,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 6: Produtos de Limpeza e Higiene -->
+            <div class="category-title">
+                <h2><i class="bi bi-droplet-half me-2"></i>Limpeza e Higiene</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=300&h=200&fit=crop" alt="Sabão em Pó" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Sabão em Pó</h5>
+                            <p class="card-text">1Kg</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 8,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=300&h=200&fit=crop" alt="Shampoo" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Shampoo Anticaspa</h5>
+                            <p class="card-text">400ml</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 12,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=300&h=200&fit=crop" alt="Pasta de Dente" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Pasta de Dente</h5>
+                            <p class="card-text">90g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 4,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=300&h=200&fit=crop" alt="Detergente" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Detergente Neutro</h5>
+                            <p class="card-text">500ml</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 2,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=300&h=200&fit=crop" alt="Papel Higiênico" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Papel Higiênico</h5>
+                            <p class="card-text">12 rolos</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 16,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=300&h=200&fit=crop" alt="Desinfetante" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Desinfetante</h5>
+                            <p class="card-text">1L</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 6,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1584820927515-e4db5c2e34b7?w=300&h=200&fit=crop" alt="Sabonete" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Sabonete Neutro</h5>
+                            <p class="card-text">90g</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 2,50</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=300&h=200&fit=crop" alt="Amaciante" class="product-image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Amaciante</h5>
+                            <p class="card-text">2L</p>
+                            <div class="mt-auto">
+                                <div class="price mb-2">R$ 9,99</div>
+                                <button class="btn btn-cart w-100 text-white">
+                                    <i class="bi bi-cart-plus me-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Minimercado Online</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-shop" aria-hidden="true"></i> Minimercado Online</h5>
+                    <p>Seu minimercado de confiança, agora também online!</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Contato</h5>
+                    <p><i class="bi bi-telephone" aria-hidden="true"></i> (51) 3333-4444</p>
+                    <p><i class="bi bi-envelope" aria-hidden="true"></i> contato@minimercado.com</p>
+                    <p><i class="bi bi-geo-alt" aria-hidden="true"></i> Porto Alegre, RS</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2025 Minimercado Online. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript customizado -->
+    <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,28 +1,660 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Serviços - Minimercado Online</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimercado Online - Serviços</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- CSS customizado -->
+    <style>
+        body {
+            padding-top: 70px;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #007bff, #28a745);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .service-form {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-check-input:checked {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #0056b3, #004085);
+        }
+        
+        .form-section {
+            transition: all 0.3s ease;
+        }
+        
+        .form-section.hidden {
+            display: none;
+        }
+        
+        .invalid-feedback {
+            display: block;
+        }
+        
+        .is-invalid {
+            border-color: #dc3545;
+        }
+        
+        .is-valid {
+            border-color: #28a745;
+        }
+        
+        .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Serviços</h1>
-        <nav>
-            <a href="index.html">Início</a> |
-            <a href="produtos.html">Produtos</a> |
-            <a href="servicos.html">Serviços</a>
-        </nav>
-    </header>
+    <!-- Link de acessibilidade para pular navegação -->
+    <a href="#main-content" class="visually-hidden-focusable">Pular para o conteúdo principal</a>
+    
+    <!-- Navbar responsiva -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation" aria-label="Navegação principal">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="Minimercado Online - Página inicial">
+                <i class="bi bi-shop" aria-hidden="true"></i> Minimercado Online
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" aria-label="Voltar à página inicial">
+                            <i class="bi bi-house" aria-hidden="true"></i> Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.html" aria-label="Ver produtos disponíveis">
+                            <i class="bi bi-basket" aria-hidden="true"></i> Produtos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="servicos.html" aria-current="page" aria-label="Página atual: Serviços">
+                            <i class="bi bi-truck" aria-hidden="true"></i> Serviços
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html" aria-label="Fazer cadastro de cliente">
+                            <i class="bi bi-person-plus" aria-hidden="true"></i> Cadastro
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="agendamento.html" aria-label="Agendar entrega ou retirada">
+                            <i class="bi bi-calendar" aria-hidden="true"></i> Agendamento
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <main>
-        <h2>Formas de Entrega</h2>
-        <ul>
-            <li>Retirada no local: Disponível das 8h às 20h</li>
-            <li>Tele-entrega: Entregamos em até 2h após a confirmação do pedido</li>
-        </ul>
+    <!-- Seção Hero -->
+    <section class="hero-section" role="banner">
+        <div class="container text-center fade-in">
+            <h1 class="display-4 mb-4">Nossos Serviços</h1>
+            <p class="lead mb-4">Escolha a melhor forma de receber seus produtos: entrega em casa ou retirada na loja!</p>
+        </div>
+    </section>
+
+    <main id="main-content" role="main">
+        <!-- Tipos de Serviço -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="section-title">Como você gostaria de receber seus produtos?</h2>
+                <div class="row mb-5">
+                    <div class="col-md-6 mb-4">
+                        <div class="card service-card h-100">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-truck text-primary" style="font-size: 4rem;" aria-hidden="true"></i>
+                                <h3 class="mt-3">Entrega Domiciliar</h3>
+                                <p class="text-muted">Receba seus produtos no conforto da sua casa em até 2 horas!</p>
+                                <ul class="list-unstyled text-start">
+                                    <li><i class="bi bi-check-circle text-success me-2"></i> Entrega rápida</li>
+                                    <li><i class="bi bi-check-circle text-success me-2"></i> Agendamento flexível</li>
+                                    <li><i class="bi bi-check-circle text-success me-2"></i> Taxa a partir de R$ 5,00</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card service-card h-100">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-shop text-success" style="font-size: 4rem;" aria-hidden="true"></i>
+                                <h3 class="mt-3">Retirar na Loja</h3>
+                                <p class="text-muted">Retire seus produtos em uma de nossas lojas quando for conveniente!</p>
+                                <ul class="list-unstyled text-start">
+                                    <li><i class="bi bi-check-circle text-success me-2"></i> Sem taxa de entrega</li>
+                                    <li><i class="bi bi-check-circle text-success me-2"></i> 2 lojas disponíveis</li>
+                                    <li><i class="bi bi-check-circle text-success me-2"></i> Horário flexível</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário de Serviço -->
+                <div class="service-form">
+                    <h3 class="text-center mb-4">Escolha seu Tipo de Serviço</h3>
+                    <form id="serviceForm" novalidate>
+                        <!-- Seleção do tipo de serviço -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Tipo de Serviço:</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check p-3 border rounded">
+                                            <input class="form-check-input" type="radio" name="serviceType" id="delivery" value="delivery" required>
+                                            <label class="form-check-label fw-bold" for="delivery">
+                                                <i class="bi bi-truck me-2"></i> Entrega Domiciliar
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check p-3 border rounded">
+                                            <input class="form-check-input" type="radio" name="serviceType" id="pickup" value="pickup" required>
+                                            <label class="form-check-label fw-bold" for="pickup">
+                                                <i class="bi bi-shop me-2"></i> Retirar na Loja
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecione um tipo de serviço.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Seção de Entrega Domiciliar -->
+                        <div id="deliverySection" class="form-section hidden">
+                            <h4 class="text-primary mb-3"><i class="bi bi-truck me-2"></i> Informações de Entrega</h4>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="deliveryDate" class="form-label">Data da Entrega:</label>
+                                    <input type="date" class="form-control" id="deliveryDate" name="deliveryDate">
+                                    <div class="invalid-feedback">
+                                        Selecione uma data válida para entrega.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="deliveryTime" class="form-label">Horário da Entrega:</label>
+                                    <select class="form-select" id="deliveryTime" name="deliveryTime">
+                                        <option value="">Selecione o horário</option>
+                                        <option value="08:00-10:00">08:00 às 10:00</option>
+                                        <option value="10:00-12:00">10:00 às 12:00</option>
+                                        <option value="14:00-16:00">14:00 às 16:00</option>
+                                        <option value="16:00-18:00">16:00 às 18:00</option>
+                                        <option value="18:00-20:00">18:00 às 20:00</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Selecione um horário para entrega.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="cep" class="form-label">CEP:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="cep" name="cep" placeholder="00000-000" maxlength="9">
+                                        <button class="btn btn-outline-secondary" type="button" id="searchCep">
+                                            <span id="cepSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                            <i id="cepIcon" class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Digite um CEP válido.
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <label for="street" class="form-label">Rua/Avenida:</label>
+                                    <input type="text" class="form-control" id="street" name="street" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="number" class="form-label">Número:</label>
+                                    <input type="text" class="form-control" id="number" name="number">
+                                    <div class="invalid-feedback">
+                                        Digite o número da residência.
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="complement" class="form-label">Complemento:</label>
+                                    <input type="text" class="form-control" id="complement" name="complement" placeholder="Apto, Bloco, etc.">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="neighborhood" class="form-label">Bairro:</label>
+                                    <input type="text" class="form-control" id="neighborhood" name="neighborhood" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="city" class="form-label">Cidade:</label>
+                                    <input type="text" class="form-control" id="city" name="city" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Seção de Retirada na Loja -->
+                        <div id="pickupSection" class="form-section hidden">
+                            <h4 class="text-success mb-3"><i class="bi bi-shop me-2"></i> Informações de Retirada</h4>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="pickupDate" class="form-label">Data da Retirada:</label>
+                                    <input type="date" class="form-control" id="pickupDate" name="pickupDate">
+                                    <div class="invalid-feedback">
+                                        Selecione uma data válida para retirada.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="pickupTime" class="form-label">Horário da Retirada:</label>
+                                    <select class="form-select" id="pickupTime" name="pickupTime">
+                                        <option value="">Selecione o horário</option>
+                                        <option value="08:00-09:00">08:00 às 09:00</option>
+                                        <option value="09:00-10:00">09:00 às 10:00</option>
+                                        <option value="10:00-11:00">10:00 às 11:00</option>
+                                        <option value="11:00-12:00">11:00 às 12:00</option>
+                                        <option value="14:00-15:00">14:00 às 15:00</option>
+                                        <option value="15:00-16:00">15:00 às 16:00</option>
+                                        <option value="16:00-17:00">16:00 às 17:00</option>
+                                        <option value="17:00-18:00">17:00 às 18:00</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Selecione um horário para retirada.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <label for="storeLocation" class="form-label">Loja para Retirada:</label>
+                                    <select class="form-select" id="storeLocation" name="storeLocation">
+                                        <option value="">Selecione a loja</option>
+                                        <option value="centro">Loja Centro - Rua dos Andradas, 1234 - Centro, POA</option>
+                                        <option value="interior">Loja Interior POA - Av. Protásio Alves, 5678 - Petrópolis, POA</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Selecione uma loja para retirada.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Observações -->
+                        <div class="mb-4">
+                            <label for="observations" class="form-label">Observações (opcional):</label>
+                            <textarea class="form-control" id="observations" name="observations" rows="3" placeholder="Informações adicionais sobre sua entrega ou retirada..."></textarea>
+                        </div>
+
+                        <!-- Botões -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg me-3">
+                                <i class="bi bi-check-circle me-2"></i> Confirmar Serviço
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href='produtos.html'">
+                                <i class="bi bi-arrow-left me-2"></i> Voltar aos Produtos
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informações Adicionais -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">Informações dos Serviços</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="text-primary"><i class="bi bi-truck me-2"></i> Entrega Domiciliar</h4>
+                                <ul class="list-unstyled">
+                                    <li><strong>Horário de funcionamento:</strong> 8h às 20h</li>
+                                    <li><strong>Tempo de entrega:</strong> Até 2 horas</li>
+                                    <li><strong>Taxa de entrega:</strong> A partir de R$ 5,00</li>
+                                    <li><strong>Área de cobertura:</strong> Porto Alegre e região metropolitana</li>
+                                    <li><strong>Valor mínimo:</strong> R$ 30,00</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="text-success"><i class="bi bi-shop me-2"></i> Retirada na Loja</h4>
+                                <ul class="list-unstyled">
+                                    <li><strong>Horário de funcionamento:</strong> 8h às 18h</li>
+                                    <li><strong>Tempo de preparo:</strong> 30 minutos</li>
+                                    <li><strong>Taxa:</strong> Gratuito</li>
+                                    <li><strong>Lojas disponíveis:</strong> Centro e Interior POA</li>
+                                    <li><strong>Valor mínimo:</strong> R$ 15,00</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Minimercado Online</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-shop" aria-hidden="true"></i> Minimercado Online</h5>
+                    <p>Seu minimercado de confiança, agora também online!</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Contato</h5>
+                    <p><i class="bi bi-telephone" aria-hidden="true"></i> (51) 3333-4444</p>
+                    <p><i class="bi bi-envelope" aria-hidden="true"></i> contato@minimercado.com</p>
+                    <p><i class="bi bi-geo-alt" aria-hidden="true"></i> Porto Alegre, RS</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2025 Minimercado Online. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript customizado -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceTypeRadios = document.querySelectorAll('input[name="serviceType"]');
+            const deliverySection = document.getElementById('deliverySection');
+            const pickupSection = document.getElementById('pickupSection');
+            const serviceForm = document.getElementById('serviceForm');
+            const cepInput = document.getElementById('cep');
+            const searchCepBtn = document.getElementById('searchCep');
+
+            // Função para mostrar/ocultar seções baseado no tipo de serviço
+            function toggleServiceSections() {
+                const selectedService = document.querySelector('input[name="serviceType"]:checked');
+                
+                if (selectedService) {
+                    if (selectedService.value === 'delivery') {
+                        deliverySection.classList.remove('hidden');
+                        pickupSection.classList.add('hidden');
+                        clearPickupFields();
+                    } else if (selectedService.value === 'pickup') {
+                        pickupSection.classList.remove('hidden');
+                        deliverySection.classList.add('hidden');
+                        clearDeliveryFields();
+                    }
+                } else {
+                    deliverySection.classList.add('hidden');
+                    pickupSection.classList.add('hidden');
+                }
+            }
+
+            // Limpar campos de entrega
+            function clearDeliveryFields() {
+                document.getElementById('deliveryDate').value = '';
+                document.getElementById('deliveryTime').value = '';
+                document.getElementById('cep').value = '';
+                document.getElementById('street').value = '';
+                document.getElementById('number').value = '';
+                document.getElementById('complement').value = '';
+                document.getElementById('neighborhood').value = '';
+                document.getElementById('city').value = '';
+            }
+
+            // Limpar campos de retirada
+            function clearPickupFields() {
+                document.getElementById('pickupDate').value = '';
+                document.getElementById('pickupTime').value = '';
+                document.getElementById('storeLocation').value = '';
+            }
+
+            // Event listeners para os radio buttons
+            serviceTypeRadios.forEach(radio => {
+                radio.addEventListener('change', toggleServiceSections);
+            });
+
+            // Formatação do CEP
+            cepInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 5) {
+                    value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+                }
+                e.target.value = value;
+            });
+
+            // Busca CEP
+            searchCepBtn.addEventListener('click', searchCEP);
+            cepInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    searchCEP();
+                }
+            });
+
+            // Função para buscar CEP
+            async function searchCEP() {
+                const cep = cepInput.value.replace(/\D/g, '');
+                
+                if (cep.length !== 8) {
+                    showError(cepInput, 'CEP deve ter 8 dígitos');
+                    return;
+                }
+
+                // Mostrar loading
+                const spinner = document.getElementById('cepSpinner');
+                const icon = document.getElementById('cepIcon');
+                spinner.classList.remove('d-none');
+                icon.classList.add('d-none');
+                searchCepBtn.disabled = true;
+
+                try {
+                    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                    const data = await response.json();
+
+                    if (data.erro) {
+                        throw new Error('CEP não encontrado');
+                    }
+
+                    // Preencher campos
+                    document.getElementById('street').value = data.logradouro || '';
+                    document.getElementById('neighborhood').value = data.bairro || '';
+                    document.getElementById('city').value = `${data.localidade}/${data.uf}` || '';
+                    
+                    // Remover erro se existir
+                    clearError(cepInput);
+                    
+                    // Focar no campo número
+                    document.getElementById('number').focus();
+
+                } catch (error) {
+                    showError(cepInput, 'CEP não encontrado. Verifique e tente novamente.');
+                    clearAddressFields();
+                } finally {
+                    // Esconder loading
+                    spinner.classList.add('d-none');
+                    icon.classList.remove('d-none');
+                    searchCepBtn.disabled = false;
+                }
+            }
+
+            // Limpar campos de endereço
+            function clearAddressFields() {
+                document.getElementById('street').value = '';
+                document.getElementById('neighborhood').value = '';
+                document.getElementById('city').value = '';
+            }
+
+            // Mostrar erro
+            function showError(input, message) {
+                input.classList.add('is-invalid');
+                input.classList.remove('is-valid');
+                const feedback = input.parentNode.querySelector('.invalid-feedback') || 
+                                input.parentNode.parentNode.querySelector('.invalid-feedback');
+                if (feedback) {
+                    feedback.textContent = message;
+                }
+            }
+
+            // Limpar erro
+            function clearError(input) {
+                input.classList.remove('is-invalid');
+                input.classList.add('is-valid');
+            }
+
+            // Definir data mínima como hoje
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('deliveryDate').min = today;
+            document.getElementById('pickupDate').min = today;
+
+            // Validação do formulário
+            serviceForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    // Aqui você pode processar os dados ou enviar para o servidor
+                    showSuccessMessage();
+                }
+            });
+
+            // Função de validação
+            function validateForm() {
+                let isValid = true;
+                const selectedService = document.querySelector('input[name="serviceType"]:checked');
+
+                // Validar tipo de serviço
+                if (!selectedService) {
+                    isValid = false;
+                    const serviceRadios = document.querySelector('input[name="serviceType"]');
+                    serviceRadios.setCustomValidity('Selecione um tipo de serviço');
+                    serviceRadios.reportValidity();
+                    return false;
+                }
+
+                if (selectedService.value === 'delivery') {
+                    // Validar campos de entrega
+                    isValid = validateDeliveryFields() && isValid;
+                } else if (selectedService.value === 'pickup') {
+                    // Validar campos de retirada
+                    isValid = validatePickupFields() && isValid;
+                }
+
+                return isValid;
+            }
+
+            // Validar campos de entrega
+            function validateDeliveryFields() {
+                let isValid = true;
+                const fields = ['deliveryDate', 'deliveryTime', 'cep', 'number'];
+                
+                fields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value.trim()) {
+                        showError(field, 'Este campo é obrigatório');
+                        isValid = false;
+                    } else {
+                        clearError(field);
+                    }
+                });
+
+                // Validar CEP formato
+                const cep = document.getElementById('cep').value.replace(/\D/g, '');
+                if (cep && cep.length !== 8) {
+                    showError(document.getElementById('cep'), 'CEP deve ter 8 dígitos');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            // Validar campos de retirada
+            function validatePickupFields() {
+                let isValid = true;
+                const fields = ['pickupDate', 'pickupTime', 'storeLocation'];
+                
+                fields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value) {
+                        showError(field, 'Este campo é obrigatório');
+                        isValid = false;
+                    } else {
+                        clearError(field);
+                    }
+                });
+
+                return isValid;
+            }
+
+            // Mostrar mensagem de sucesso
+            function showSuccessMessage() {
+                alert('Serviço confirmado com sucesso! Você receberá uma confirmação por email em breve.');
+                // Aqui você pode redirecionar ou limpar o formulário
+                serviceForm.reset();
+                toggleServiceSections();
+            }
+        });
+    </script>
 </body>
 </html>
